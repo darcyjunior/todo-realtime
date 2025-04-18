@@ -1,3 +1,102 @@
+# Lista de Tarefas Local-First (Expo + Legend-State + Supabase)
+
+<p>
+  <img alt="Suporta Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
+  <img alt="Suporta Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
+</p>
+
+Aplicativo local-first desenvolvido com [Expo](https://expo.dev/), [Legend-State](https://legendapp.com/open-source/state/v3/) e [Supabase](https://supabase.com/), inspirado no artigo oficial da Supabase.
+
+---
+
+## 📒 Sumário
+- [Setup e Instalação](#setup-e-instalação)
+- [Arquitetura e Decisões Técnicas](#arquitetura-e-decisões-técnicas)
+- [Riscos e Melhorias Futuras](#riscos-e-melhorias-futuras)
+- [Referências](#referências)
+- [English version below](#expo-app-with-legend-state-and-supabase-realtime)
+
+---
+
+## Setup e Instalação
+
+1. **Pré-requisitos:**
+   - Conta no Supabase ([crie aqui](https://database.new))
+   - Node.js 18+
+   - Yarn ou npm
+   - Expo CLI (`npm install -g expo-cli`)
+
+2. **Configuração:**
+   - Clone o repositório.
+   - Copie `.env.local.example` para `.env` e preencha com as chaves do Supabase:
+     ```env
+     EXPO_PUBLIC_SUPABASE_URL=...
+     EXPO_PUBLIC_SUPABASE_ANON_KEY=...
+     ```
+   - Instale as dependências:
+     ```sh
+     yarn install
+     # ou
+     npm install
+     ```
+
+3. **Rodando o app:**
+   - Execute:
+     ```sh
+     npx expo start
+     ```
+   - Use o QR code para rodar no celular ou pressione `w` para rodar no navegador.
+
+4. **Banco de dados:**
+   - Execute as migrações com `supabase db push`.
+   - Acesse o painel do Supabase para gerenciar os dados.
+
+---
+
+## Arquitetura e Decisões Técnicas
+
+- **Local-First:**
+  - O app funciona offline, salvando dados localmente e sincronizando com o Supabase quando online.
+- **Legend-State:**
+  - Gerencia o estado dos todos com reatividade e sincronização automática.
+- **Supabase:**
+  - Backend para autenticação, persistência e realtime.
+- **Sincronização:**
+  - Conflitos resolvidos por último update.
+  - Soft delete: itens deletados são marcados, não removidos fisicamente.
+- **Design:**
+  - Layout moderno, inspirado no shadcn/ui, responsivo para mobile e web.
+- **Segurança:**
+  - Chaves sensíveis via `.env`.
+  - Regras de acesso configuradas no Supabase.
+
+---
+
+## Riscos e Melhorias Futuras
+
+- **Riscos:**
+  - Conflitos de sincronização em múltiplos dispositivos.
+  - Limitações do realtime em grandes volumes de dados.
+  - Suporte parcial a recursos web-only (ex: boxShadow).
+- **Melhorias Futuras:**
+  - Autenticação de usuários.
+  - Filtros, busca e ordenação de tarefas.
+  - Notificações push.
+  - Dark mode.
+  - Testes automatizados.
+  - Melhor UX para resolução de conflitos offline/online.
+
+---
+
+## Referências
+- Artigo Supabase: https://supabase.com/blog/local-first-expo-legend-state
+- Exemplo oficial: https://github.com/expo/examples/tree/master/with-legend-state-supabase
+- Expo docs: https://docs.expo.dev/guides/local-first/
+- Legend-State docs: https://legendapp.com/open-source/state/
+- shadcn/ui: https://ui.shadcn.com/
+
+---
+
 # Expo App with Legend-State and Supabase Realtime
 
 <p>

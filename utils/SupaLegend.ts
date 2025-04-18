@@ -8,6 +8,7 @@ import { configureSynced } from '@legendapp/state/sync';
 import { observablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 const supabase = createClient<Database>(
   process.env.EXPO_PUBLIC_SUPABASE_URL,
   process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY
@@ -59,6 +60,16 @@ export function addTodo(text: string) {
     id,
     text,
   });
+}
+
+export function editTodo(id: string, newText: string) {
+  console.log('Editando todo', id, newText);
+  todos$[id].text.set(newText);
+}
+
+export function deleteTodo(id: string) {
+  console.log('Deletando todo', id);
+  todos$[id].deleted.set(true);
 }
 
 export function toggleDone(id: string) {
